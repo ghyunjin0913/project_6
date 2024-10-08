@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="goods" >
+	<!-- org.kitri.springmybatis.dto.Member -->
+	<select id="findGoods" resultType="goods"> 
+	<![CDATA[
+	SELECT * FROM goods
+	]]>
+	</select>
+	
+	<!-- org.kitri.springmybatis.dto.Member -->
+	<!-- int(primitive)/_int(Integer) -->
+	<select id="findGoodsByNo" parameterType="String" resultType="goods"> 
+	<![CDATA[
+	SELECT *
+	FROM goods
+	WHERE goodscd=#{goodscd}
+	]]>
+	</select>
+	
+	<insert id="registergoods" parameterType="goods">
+	<![CDATA[
+	INSERT INTO goods
+	VALUES(#{goodscd}, #{goodsnm}, #{type}, #{price}, #{provider}, #{status}, #{qty})
+	]]>
+	</insert>
+	
+	<update id="goodsUpdate" parameterType="goods">
+	<![CDATA[
+	UPDATE goods
+	SET price = #{price}, status = #{status}, qty = #{qty}
+	WHERE goodscd=#{goodscd}
+	AND goodsnm=#{goodsnm}
+	]]>
+	</update>
+</mapper>
